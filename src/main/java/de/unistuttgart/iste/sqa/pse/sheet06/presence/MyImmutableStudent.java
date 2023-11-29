@@ -10,12 +10,12 @@ package de.unistuttgart.iste.sqa.pse.sheet06.presence;
 public final class MyImmutableStudent {
     private final String StudentName;
     private final long MatrikelNummer;
-    private final Address Geburtsort;
+    // private final Address Geburtsort;
 
     public MyImmutableStudent(String studentName, long matrikelNummer, Address geburtsort) {
         StudentName = studentName;
         MatrikelNummer = matrikelNummer;
-        Geburtsort = new Address(geburtsort.getStreetname(),geburtsort.getStreetnumber(),); //nicht fertig
+       // Geburtsort = new Address(geburtsort.getStreetname(),geburtsort.getStreetnumber(),); //nicht fertig
     }
 
     public String getStudentName() {
@@ -26,8 +26,8 @@ public final class MyImmutableStudent {
         return MatrikelNummer;
     }
 // muss auch geander werden
-    public Address getGeburtsort() {
-        return Geburtsort;
-    }
+   // public Address getGeburtsort() {
+       // return Geburtsort;
+    //}
 
 }

@@ -28,8 +28,74 @@ public class AmazingPauleHamsterGame extends SimpleHamsterGame {
 	protected void run() {
 		passTheMaze();
 	}
+	/*@
+	@ requires paule != null
+	@ ensures paule made three left turns
+	 */
+	/**
+	 * Checks if paule´s right side is free
+	 */
+	public void turnRight() {
+		paule.turnLeft();
+		paule.turnLeft();
+		paule.turnLeft();
+	}
 
+	/*@
+	@ requires paule != null
+	 */
+	/**
+	 * Checks if paule´s left side is free
+	 */
+	public boolean leftIsClear() {
+		paule.turnLeft();
+		boolean result = paule.frontIsClear();
+		turnRight();
+		return result;
+	}
+	/*@
+	@ requires paule != null
+	 */
+	/**
+	 * Checks if paule´s right side is free
+	 */
+	public boolean rightIsClear() {
+		turnRight();
+		boolean result = paule.frontIsClear();
+		paule.turnLeft();
+		return result;
+	}
+	/*@
+	@ requires Hamster != null
+	@ ensures Hamster passed the Maze
+	 */
+	/**
+	 * Makes Paule pass the Maze using the left hand rule
+	 * and pick one grain.
+	 */
 	void passTheMaze() {
-		// solve the maze here
+		/*@
+		@loop_invariant: Paule is inside the maze, following the left-hand rule.
+		 */
+		while (paule.mouthEmpty()) {
+			if (leftIsClear()) {
+				paule.turnLeft();
+				paule.move();
+			} else if (paule.frontIsClear()) {
+				paule.move();
+			} else if (rightIsClear()) {
+				turnRight();
+				paule.move();
+			} else {
+				paule.turnLeft();
+				paule.turnLeft();
+				paule.move();
+			}
+			if (paule.grainAvailable()) {
+				paule.pickGrain();
+				paule.write("I escaped the Maze! :)");
+				break;
+			}
+		}
 	}
 }

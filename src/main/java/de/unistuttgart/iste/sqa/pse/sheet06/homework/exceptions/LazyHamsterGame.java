@@ -1,6 +1,7 @@
 package de.unistuttgart.iste.sqa.pse.sheet06.homework.exceptions;
 
 import de.hamstersimulator.objectsfirst.datatypes.Direction;
+import de.hamstersimulator.objectsfirst.datatypes.Location;
 import de.hamstersimulator.objectsfirst.external.simple.game.SimpleHamsterGame;
 
 /**
@@ -41,8 +42,10 @@ public class LazyHamsterGame extends SimpleHamsterGame {
 		// TODO Implement here.
 		double randomValue = Math.random();
 		if (randomValue < 0.7) {
-			paule.move();
-			System.out.println("Paule moves forward!");
+			if (paule.frontIsClear()) {
+				paule.move();
+				paule.write("Paule moves forward!");
+			}
 		} else if (!paule.frontIsClear()) {
 			throw new NoWayToGoException();
 		} else {
@@ -62,13 +65,21 @@ public class LazyHamsterGame extends SimpleHamsterGame {
 	public void moveMultipleSteps(int numberOfSteps) {
 		// TODO Implement here.
 
+
 		for (int i = 0; i < numberOfSteps; i++) {
 			try {
 				tryToMove();
+				while (!paule.frontIsClear()) {
+					isCaged();
+				}
 			} catch (TooLazyException exception) {
 				paule.write("Come on Paule!");
+				numberOfSteps = numberOfSteps + 1;
 			} catch (NoWayToGoException exception) {
-				paule.turnLeft();
+				if (isCaged()) {
+					break;
+				}
+
 			}
 		}
 	}
@@ -85,7 +96,7 @@ public class LazyHamsterGame extends SimpleHamsterGame {
 			}
 		}
 		if (paule.getDirection().equals(originalDirection)) {
-			System.out.println("I am in caged!");
+			paule.write("I am trapped!");
 		}
         return paule.getDirection().equals(originalDirection);
 	}

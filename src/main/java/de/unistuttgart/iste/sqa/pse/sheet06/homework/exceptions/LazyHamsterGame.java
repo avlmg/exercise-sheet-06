@@ -7,7 +7,8 @@ import de.hamstersimulator.objectsfirst.external.simple.game.SimpleHamsterGame;
 /**
  * A SimpleHamsterGame with exceptions
  *
- * @author (your name)
+ * @author (Amores, Schneyinck)
+ * @version (01/12/23)
  */
 public class LazyHamsterGame extends SimpleHamsterGame {
 
@@ -78,7 +79,7 @@ public class LazyHamsterGame extends SimpleHamsterGame {
 			}
 		}
 	}
-	
+
 	/*@
 	@ requires Hamster is placed in the game.
 	@ ensures boolean value of if the hamster is caged

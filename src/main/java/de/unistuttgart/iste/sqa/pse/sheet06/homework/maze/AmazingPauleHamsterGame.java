@@ -5,8 +5,8 @@ import de.hamstersimulator.objectsfirst.external.simple.game.SimpleHamsterGame;
 /**
  * Describe the purpose of this class here.
  *
- * @author (Your name)
- * @version (a version number or a date)
+ * @author (Amores, Schneyinck)
+ * @version (01/12/23)
  */
 public class AmazingPauleHamsterGame extends SimpleHamsterGame {
 
